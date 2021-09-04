@@ -1,8 +1,8 @@
 package home.inheritance;
 
-import com.home.inheritance.entity.ContractEmployee;
-import com.home.inheritance.entity.Employee;
-import com.home.inheritance.entity.RegularEmployee;
+import com.home.inheritance.EmployeeContract;
+import com.home.inheritance.Employee;
+import com.home.inheritance.EmployeeRegular;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -58,12 +58,12 @@ public class HierarchyTest {
         Employee e1 = new Employee();
         e1.setName(EMPLOYEE_NAME);
 
-        RegularEmployee e2 = new RegularEmployee();
+        EmployeeRegular e2 = new EmployeeRegular();
         e2.setName(REGULAR_EMPLOYEE_NAME);
         e2.setSalary(REGULAR_EMPLOYEE_SALARY);
         e2.setBonus(REGULAR_EMPLOYEE_BONUS);
 
-        ContractEmployee e3 = new ContractEmployee();
+        EmployeeContract e3 = new EmployeeContract();
         e3.setName(CONTRACT_EMPLOYEE_NAME);
         e3.setPay_per_hour(CONTRACT_EMPLOYEE_PER_HOUR);
         e3.setContract_duration(CONTRACT_EMPLOYEE_DURATION);
@@ -92,13 +92,13 @@ public class HierarchyTest {
                     break;
                 case REGULAR_EMPLOYEE_CLASS:
                     Assert.assertEquals(employee.getName(), REGULAR_EMPLOYEE_NAME);
-                    Assert.assertEquals(((RegularEmployee)employee).getSalary(), REGULAR_EMPLOYEE_SALARY, 0);
-                    Assert.assertEquals(((RegularEmployee)employee).getBonus(), REGULAR_EMPLOYEE_BONUS);
+                    Assert.assertEquals(((EmployeeRegular)employee).getSalary(), REGULAR_EMPLOYEE_SALARY, 0);
+                    Assert.assertEquals(((EmployeeRegular)employee).getBonus(), REGULAR_EMPLOYEE_BONUS);
                     break;
                 case CONTRACT_EMPLOYEE_CLASS:
                     Assert.assertEquals(employee.getName(), CONTRACT_EMPLOYEE_NAME);
-                    Assert.assertEquals(((ContractEmployee)employee).getContract_duration(), CONTRACT_EMPLOYEE_DURATION);
-                    Assert.assertEquals(((ContractEmployee)employee).getPay_per_hour(), CONTRACT_EMPLOYEE_PER_HOUR, 0);
+                    Assert.assertEquals(((EmployeeContract)employee).getContract_duration(), CONTRACT_EMPLOYEE_DURATION);
+                    Assert.assertEquals(((EmployeeContract)employee).getPay_per_hour(), CONTRACT_EMPLOYEE_PER_HOUR, 0);
             }
         }
         session2.close();

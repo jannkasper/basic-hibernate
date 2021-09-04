@@ -28,20 +28,23 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">create</property>
 
-<!--        <mapping resource="employee.hbm.xml" />-->
-        <mapping class="com.home.inheritance.entity.Employee" />
-        <mapping class="com.home.inheritance.entity.RegularEmployee" />
-        <mapping class="com.home.inheritance.entity.ContractEmployee" />
+<!--        Table Per Hierarchy-->
+        <mapping resource="inheritance/hierarchy.hbm.xml" />
+<!--        <mapping class="com.home.inheritance.Employee" />-->
+<!--        <mapping class="com.home.inheritance.EmployeeRegular" />-->
+<!--        <mapping class="com.home.inheritance.EmployeeContract" />-->
 
-<!--        <mapping resource="job.hbm.xml" />-->
-        <mapping class="com.home.inheritance.entity.Job" />
-        <mapping class="com.home.inheritance.entity.RegularJob" />
-        <mapping class="com.home.inheritance.entity.ContractJob" />
+<!--        Table Per Concrete-->
+        <mapping resource="inheritance/concrete.hbm.xml" />
+<!--        <mapping class="com.home.inheritance.Job" />-->
+<!--        <mapping class="com.home.inheritance.JobRegular" />-->
+<!--        <mapping class="com.home.inheritance.JobContract" />-->
 
-        <mapping resource="book.hbm.xml" />
-<!--        <mapping class="com.home.inheritance.entity.Book" />-->
-<!--        <mapping class="com.home.inheritance.entity.RegularBook" />-->
-<!--        <mapping class="com.home.inheritance.entity.ContractBook" />-->
+<!--        Table Per Subclass-->
+        <mapping resource="inheritance/subclass.hbm.xml" />
+<!--        <mapping class="com.home.inheritance.Book" />-->
+<!--        <mapping class="com.home.inheritance.BookRegular" />-->
+<!--        <mapping class="com.home.inheritance.BookContract" />-->
 
     </session-factory>
 </hibernate-configuration>

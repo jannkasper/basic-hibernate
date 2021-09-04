@@ -1,8 +1,8 @@
 package home.inheritance;
 
-import com.home.inheritance.entity.ContractBook;
-import com.home.inheritance.entity.Book;
-import com.home.inheritance.entity.RegularBook;
+import com.home.inheritance.BookContract;
+import com.home.inheritance.Book;
+import com.home.inheritance.BookRegular;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -51,19 +51,19 @@ public class SubclassTest {
     }
 
     @Test
-    public void testHierarchy() {
+    public void testSubclass() {
         Session session1 = sessionFactory.openSession();
         Transaction t = session1.beginTransaction();
 
         Book b1 = new Book();
         b1.setName(BOOK_NAME);
 
-        RegularBook b2 = new RegularBook();
+        BookRegular b2 = new BookRegular();
         b2.setName(REGULAR_BOOK_NAME);
         b2.setSalary(REGULAR_BOOK_SALARY);
         b2.setBonus(REGULAR_BOOK_BONUS);
 
-        ContractBook b3 = new ContractBook();
+        BookContract b3 = new BookContract();
         b3.setName(CONTRACT_BOOK_NAME);
         b3.setPay_per_hour(CONTRACT_BOOK_PER_HOUR);
         b3.setContract_duration(CONTRACT_BOOK_DURATION);
@@ -92,13 +92,13 @@ public class SubclassTest {
                     break;
                 case REGULAR_BOOK_CLASS:
                     Assert.assertEquals(employee.getName(), REGULAR_BOOK_NAME);
-                    Assert.assertEquals(((RegularBook)employee).getSalary(), REGULAR_BOOK_SALARY, 0);
-                    Assert.assertEquals(((RegularBook)employee).getBonus(), REGULAR_BOOK_BONUS);
+                    Assert.assertEquals(((BookRegular)employee).getSalary(), REGULAR_BOOK_SALARY, 0);
+                    Assert.assertEquals(((BookRegular)employee).getBonus(), REGULAR_BOOK_BONUS);
                     break;
                 case CONTRACT_BOOK_CLASS:
                     Assert.assertEquals(employee.getName(), CONTRACT_BOOK_NAME);
-                    Assert.assertEquals(((ContractBook)employee).getContract_duration(), CONTRACT_BOOK_DURATION);
-                    Assert.assertEquals(((ContractBook)employee).getPay_per_hour(), CONTRACT_BOOK_PER_HOUR, 0);
+                    Assert.assertEquals(((BookContract)employee).getContract_duration(), CONTRACT_BOOK_DURATION);
+                    Assert.assertEquals(((BookContract)employee).getPay_per_hour(), CONTRACT_BOOK_PER_HOUR, 0);
             }
         }
         session2.close();
