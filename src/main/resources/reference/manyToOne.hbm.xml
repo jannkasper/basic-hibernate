@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.home.reference.ManyToOneQuestion" table="q207">
+        <id name="id">
+            <generator class="increment"/>
+        </id>
+        <property name="qname"/>
+
+        <many-to-one name="answer" class="com.home.reference.ManyToOneAnswer" column="answer_id" />
+    </class>
+
+    <class name="com.home.reference.ManyToOneAnswer" table="ans207">
+        <id name="id">
+            <generator class="increment" />
+        </id>
+        <property name="answerName" />
+        <property name="postedBy" />
+
+        <set name="questions" inverse="true">
+            <key column="answer_id" not-null="true" />
+            <one-to-many class="com.home.reference.ManyToOneQuestion" />
+        </set>
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.home.reference.ManyToManyQuestion" table="q201">
+        <id name="id">
+            <column name="q_id" />
+            <generator class="increment"/>
+        </id>
+
+        <property name="qname"/>
+
+        <set name="answers" table="ques_ans201" fetch="select" cascade="save-update">
+            <key column="q_id" />
+            <many-to-many class="com.home.reference.ManyToManyAnswer" column="ans_id" />
+        </set>
+    </class>
+
+    <class name="com.home.reference.ManyToManyAnswer" table="ans201">
+        <id name="id">
+            <column name="ans_id" />
+            <generator class="increment" />
+        </id>
+        <property name="answerName" />
+        <property name="postedBy" />
+        <set name="questions" table="ques_ans201" inverse="true">
+            <key column="ans_id" />
+            <many-to-many class="com.home.reference.ManyToManyQuestion" column="q_id"  />
+        </set>
+    </class>
+
+</hibernate-mapping>

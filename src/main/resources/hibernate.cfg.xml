@@ -46,5 +46,36 @@
 <!--        <mapping class="com.home.inheritance.BookRegular" />-->
 <!--        <mapping class="com.home.inheritance.BookContract" />-->
 
+        <!--        Mapping List-->
+        <mapping resource="collection/questionHasList.hbm.xml" />
+
+        <!--        Mapping Bag-->
+        <mapping resource="collection/questionHasBag.hbm.xml" />
+
+        <!--        Mapping Set-->
+        <mapping resource="collection/questionHasSet.hbm.xml" />
+
+        <!--        Mapping Map-->
+        <mapping resource="collection/questionHasMap.hbm.xml" />
+
+        <!--        One To Many-->
+        <mapping resource="reference/oneToMany.hbm.xml" />
+        <!--        <mapping class="com.home.reference.OneToManyQuestion" />-->
+        <!--        <mapping class="com.home.reference.OneToManyAnswer" />-->
+
+        <!--        Many To Many-->
+        <mapping resource="reference/manyToMany.hbm.xml" />
+        <!--        <mapping class="com.home.reference.ManyToManyQuestion" />-->
+        <!--        <mapping class="com.home.reference.ManyToManyAnswer" />-->
+
+        <!--        One To One-->
+        <mapping resource="reference/oneToOne.hbm.xml" />
+        <!--        <mapping class="com.home.reference.OneToOneQuestion" />-->
+        <!--        <mapping class="com.home.reference.OneToOneAnswer" />-->
+
+        <!--        Many To One-->
+        <mapping resource="reference/manyToOne.hbm.xml" />
+        <!--        <mapping class="com.home.reference.ManyToOneQuestion" />-->
+        <!--        <mapping class="com.home.reference.ManyToOneAnswer" />-->
     </session-factory>
 </hibernate-configuration>
