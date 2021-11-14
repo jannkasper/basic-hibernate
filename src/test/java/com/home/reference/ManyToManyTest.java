@@ -1,7 +1,5 @@
-package home.reference;
+package com.home.reference;
 
-import com.home.reference.ManyToManyAnswer;
-import com.home.reference.ManyToManyQuestion;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,25 +8,30 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class ManyToManyTest {
 
     private static SessionFactory sessionFactory = null;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUp() {
         StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
         Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
         sessionFactory = meta.getSessionFactoryBuilder().build();
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDown() {
         sessionFactory.close();
     }

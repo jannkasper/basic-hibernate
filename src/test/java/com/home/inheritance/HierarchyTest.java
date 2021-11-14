@@ -1,8 +1,5 @@
-package home.inheritance;
+package com.home.inheritance;
 
-import com.home.inheritance.EmployeeContract;
-import com.home.inheritance.Employee;
-import com.home.inheritance.EmployeeRegular;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,14 +8,19 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Iterator;
 import java.util.List;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class HierarchyTest {
 
     private final String EMPLOYEE_CLASS = "Employee";
@@ -38,14 +40,14 @@ public class HierarchyTest {
 
     private static SessionFactory sessionFactory = null;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUp() {
         StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
         Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
         sessionFactory = meta.getSessionFactoryBuilder().build();
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDown() {
         sessionFactory.close();
     }
