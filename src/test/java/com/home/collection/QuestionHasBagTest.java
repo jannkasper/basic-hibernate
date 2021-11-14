@@ -1,6 +1,5 @@
-package home.collection;
+package com.home.collection;
 
-import com.home.collection.QuestionHasMap;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,49 +8,56 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
-public class QuestionHasMapTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class QuestionHasBagTest {
 
     private static SessionFactory sessionFactory = null;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUp() {
         StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
         Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();
         sessionFactory = meta.getSessionFactoryBuilder().build();
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDown() {
         sessionFactory.close();
     }
 
     @Test
-    public void testMap() {
+    public void testBag() {
         Session session1 = sessionFactory.openSession();
         Transaction t = session1.beginTransaction();
 
-        Map<String, String> map1 = new HashMap<>();
-        map1.put("Java is a programming language", "John Milton");
-        map1.put("Java is a platform", "Ashok Kumar");
+        ArrayList<String> list1=new ArrayList<String>();
+        list1.add("Java is a programming language");
+        list1.add("Java is a platform");
 
-        Map<String, String> map2 = new HashMap<>();
-        map2.put("Servlet is an Interface", "Ashok Kumar");
-        map2.put("Servlet is a package", "Rahul Kumar");
+        ArrayList<String> list2=new ArrayList<String>();
+        list2.add("Servlet is an Interface");
+        list2.add("Servlet is an API");
 
-        QuestionHasMap question1 = new QuestionHasMap();
+        QuestionHasBag question1 = new QuestionHasBag();
         question1.setQname("What is Java?");
-        question1.setAnswers(map1);
+        question1.setAnswers(list1);
 
-        QuestionHasMap question2 = new QuestionHasMap();
+        QuestionHasBag question2 = new QuestionHasBag();
         question2.setQname("What is Servlet?");
-        question2.setAnswers(map2);
+        question2.setAnswers(list2);
 
         session1.persist(question1);
         session1.persist(question2);
@@ -62,14 +68,14 @@ public class QuestionHasMapTest {
 
         Session session2 = sessionFactory.openSession();
 
-        Query query = session2.createQuery("from QuestionHasMap");
-        List<QuestionHasMap> list = query.list();
+        Query query = session2.createQuery("from QuestionHasBag");
+        List<QuestionHasBag> list = query.list();
 
         Assert.assertEquals(list.size(), 2);
 
-        Iterator<QuestionHasMap> itr = list.iterator();
+        Iterator<QuestionHasBag> itr = list.iterator();
         while(itr.hasNext()){
-            QuestionHasMap question = itr.next();
+            QuestionHasBag question = itr.next();
             Assert.assertEquals(question.getAnswers().size(), 2);
         }
         session2.close();
