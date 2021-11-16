@@ -2,7 +2,7 @@ package com.home.inheritance;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "employee101")
 @Table(name = "employee101")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
