@@ -1,9 +1,12 @@
 package com.home.entity;
 
+import lombok.ToString;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
+@ToString
 public class Address {
 
     @Column(name = "Address")

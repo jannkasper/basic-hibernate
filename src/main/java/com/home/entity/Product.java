@@ -1,6 +1,5 @@
 package com.home.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -27,4 +26,14 @@ public class Product extends AbstractNameEntity {
     private String unit;
     @Column(name = "Price")
     private double price;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + getId() +
+                ", name=" + getName() +
+                ", unit='" + unit + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

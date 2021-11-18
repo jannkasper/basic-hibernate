@@ -1,7 +1,7 @@
 package com.home.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
@@ -16,13 +16,13 @@ import java.util.Set;
         @AttributeOverride(name = "id", column = @Column(name = "SupplierID")),
         @AttributeOverride(name = "name", column = @Column(name = "SupplierName"))
 })
+@ToString
 public class Supplier extends AbstractNameEntity {
 
     @Column(name = "ContactName")
     private String contactName;
     @Embedded
     Address address;
-//    @JsonManagedReference
 //    @OneToMany(mappedBy = "supplier", targetEntity = Product.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    private Set<Product> products = new HashSet<Product>();
 
